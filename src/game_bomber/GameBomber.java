@@ -2,11 +2,19 @@ package game_bomber;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.Pane;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import java.io.File;
@@ -15,6 +23,7 @@ import java.util.ArrayList;
 public class GameBomber extends Application {
     static boolean player= true;
     static boolean NotPutBomb=false;
+    static Stage primaryStage=new Stage();
     static ArrayList arrbomb=new ArrayList<Bomb>();
     static ArrayList timebomb=new ArrayList<Integer>();
     static ArrayList timefire=new ArrayList<Double>();
@@ -24,22 +33,19 @@ public class GameBomber extends Application {
     static Item itemrun=new Item();
     static Item door=new Item();
     static int SPEED=3;
+    static Stage LOSS=new Stage();
     static  Media media = new Media(new File("C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\Tieng-Bom-V-A.mp3").toURI().toString());
-
     public static void main(String[] args) {
         launch(args);
     }
 
     @Override
-    public void start(Stage primaryStage) throws Exception {
-        final int width = 720;
+    public void start(Stage primary) throws Exception {
+        final int width = 675;
         final int height = 585;
         final int picture_width = 45;
         final int picture_height = 45;
         final String path="C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\Vo-Tinh-Xesi-Hoaprox.mp3";
-
-
-
         primaryStage.setTitle("Bomberman");
         Pane root = new Pane();
         Media media = new Media(new File(path).toURI().toString());
@@ -199,6 +205,35 @@ public class GameBomber extends Application {
         root.getChildren().add(bomber.imageViewBomber);
         //root.getChildren().add(mediaView);
         primaryStage.setScene(primaryScene);
+        primaryStage.setResizable(false);
         primaryStage.show();
+        Pane Loss=new Pane();
+        gameover gameover=new gameover(0,0);
+        Loss.getChildren().add(gameover.imageView);
+        Button button = new Button();
+        button.setText("Replay");
+        button.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent event) {
+                bomber.level(root,"/Map_level/Map1.txt");
+                LOSS.close();
+                primaryStage.show();
+            }
+        });
+        button.setLayoutX(130);
+        button.setLayoutY(170);
+        button.setStyle("-fx-font-size: 2em; -fx-background-color: #0dff14 ; -fx-text-fill: #ff213f");
+       /* button.setStyle("-fx-font-size: 2em; ");
+        button.setStyle("-fx-text-fill: #0000ff");*/
+        Loss.getChildren().add(button);
+        Loss.setStyle("-fx-background-color: #000000;");
+        Loss.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));
+        Scene scene=new Scene(Loss,300,210,Color.GREEN);
+        LOSS.setScene(scene);
+        LOSS.setResizable(false);
+        LOSS.setTitle("GAMEOVER");
+        LOSS.setX(primaryStage.getX()+200);
+        LOSS.setY(primaryStage.getY()+200);
+
     }
 }

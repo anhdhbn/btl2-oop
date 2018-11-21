@@ -104,6 +104,8 @@ public class Enemy extends AnimatedObject {
                 bomb.stoptime();
             }
             GameBomber.player=false;
+            GameBomber.primaryStage.close();
+            GameBomber.LOSS.show();
         }
 
             }

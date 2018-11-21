@@ -101,10 +101,10 @@ public class Bomb extends StaticObject {
             this.Right=true;
             //fireBomb=new FireBomb(layoutX,layoutY);
             fireBom.arrNode.add(fireBomb.imageViewFireBombline);
-            fireBomb=new FireBomb(layoutX,layoutY);
-            fireBom.arrNode.add(fireBomb.imageViewcenter);
             //group.getChildren().add(fireBomb.imageViewFireBombline);
         }
+        fireBomb=new FireBomb(layoutX,layoutY);
+        fireBom.arrNode.add(fireBomb.imageViewcenter);
         return fireBom;
     }
     public static void replaceMap(int x, int y, Pane root, Bomber bomber, ArrayList enemymap){
@@ -247,6 +247,8 @@ public class Bomb extends StaticObject {
                 bomb.stoptime();
             }
             GameBomber.player=false;
+            GameBomber.primaryStage.close();
+            GameBomber.LOSS.show();
         }
         if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width && Math.abs(b.layoutY - bomber.LayoutY) < picture_height*(check+1)) {
             for(int i=0;i<GameBomber.arrbomb.size();i++){
@@ -254,6 +256,8 @@ public class Bomb extends StaticObject {
                 bomb.stoptime();
             }
             GameBomber.player=false;
+            GameBomber.primaryStage.close();
+            GameBomber.LOSS.show();
         }
         GameBomber.timefire.add(temptime);
         GameBomber.arrbomb.set(indexbomb,b);

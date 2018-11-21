@@ -54,6 +54,33 @@ public class Bomber extends AnimatedObject {
         }
 
     }
+    public void level(Pane root,String path){
+        for(int i=0;i<GameBomber.arrbomb.size();i++){
+            Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
+            bomb.stoptime();
+        }
+        GameBomber.player= true;
+        GameBomber.NotPutBomb=false;
+        GameBomber.arrbomb.clear();
+        GameBomber.timebomb.clear();
+        GameBomber.timefire.clear();
+        GameBomber.arrNode.clear();
+        GameBomber.Item =false;
+        GameBomber.itembomx2=new Item();
+        GameBomber.itemrun=new Item();
+        GameBomber.door=new Item();
+        GameBomber.SPEED=3;
+        StaticObject.enemymap.clear();
+        root.getChildren().clear();
+        StaticObject staticObject = new StaticObject();
+        staticObject.loadMap(path, root);
+        for(int i=0;i<StaticObject.enemymap.size();i++){
+            root.getChildren().add(((Enemy)(StaticObject.enemymap.get(i))).imageViewEnemy);
+        }
+        this.movingBomber(picture_width,picture_height);
+        root.getChildren().add(this.imageViewBomber);
+
+    }
     public void CheckItem(Pane root){
         if(Math.abs(LayoutX-GameBomber.itembomx2.layoutX)<picture_width&&Math.abs(LayoutY-GameBomber.itembomx2.layoutY)<picture_height){
             GameBomber.Item=true;
@@ -67,30 +94,7 @@ public class Bomber extends AnimatedObject {
                 GameBomber.itemrun.ItemX2bomb(0,0);
         }
         if(Math.abs(LayoutX-GameBomber.door.layoutX)<picture_width&&Math.abs(LayoutY-GameBomber.door.layoutY)<picture_height&&StaticObject.enemymap.size()==0){
-            for(int i=0;i<GameBomber.arrbomb.size();i++){
-                Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-                bomb.stoptime();
-            }
-            boolean player= true;
-             boolean NotPutBomb=false;
-             GameBomber.arrbomb.clear();
-             GameBomber.timebomb.clear();
-             GameBomber.timefire.clear();
-             GameBomber.arrNode.clear();
-             GameBomber.Item =false;
-             GameBomber.itembomx2=new Item();
-             GameBomber.itemrun=new Item();
-             GameBomber.door=new Item();
-             GameBomber.SPEED=3;
-             root.getChildren().clear();
-             StaticObject staticObject = new StaticObject();
-             staticObject.loadMap("/Map_level/Map2.txt", root);
-            for(int i=0;i<StaticObject.enemymap.size();i++){
-                root.getChildren().add(((Enemy)(StaticObject.enemymap.get(i))).imageViewEnemy);
-            }
-            this.movingBomber(picture_width,picture_height);
-            root.getChildren().add(this.imageViewBomber);
-
+            this.level(root,"/Map_level/Map2.txt");
 
     }}
 }
