@@ -196,7 +196,17 @@ public class GameBomber extends Application {
                 Enemy enemy;
                 for (int i=0;i<StaticObject.enemymap.size();i++){
                     enemy=(Enemy) StaticObject.enemymap.get(i);
-                     enemy.check(bomber);
+                    if(enemy.getLevel()==1)
+                        enemy.check(bomber);
+                    else
+                        if(enemy.getLevel()==2)
+                            enemy.checkRamdom(bomber);
+                        else
+                            if(enemy.getLevel()==3){
+                                //goi cai ham check tim duoi nguoi
+                                //ham đấy check xong thay toa do moi thi copy cai đoạn check bị bom nổ với va chạm người ở cuối hàm check bên trên
+                                System.out.println();
+                            }
                 }
                 Bomb.Handling(root,bomber);
             }}
@@ -223,8 +233,6 @@ public class GameBomber extends Application {
         button.setLayoutX(130);
         button.setLayoutY(170);
         button.setStyle("-fx-font-size: 2em; -fx-background-color: #0dff14 ; -fx-text-fill: #ff213f");
-       /* button.setStyle("-fx-font-size: 2em; ");
-        button.setStyle("-fx-text-fill: #0000ff");*/
         Loss.getChildren().add(button);
         Loss.setStyle("-fx-background-color: #000000;");
         Loss.setBackground(new Background(new BackgroundFill(Color.BLACK, CornerRadii.EMPTY, Insets.EMPTY)));

@@ -59,6 +59,7 @@ public class StaticObject {
                             break;
                         case 'x':
                             Enemy enemy = new Enemy((double) column * picture_width, (double) row * picture_height);
+                            enemy.setLevel(1);
                             enemymap.add(enemy);
                             Grass grassx = new Grass((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(grassx.imageViewGrass);
@@ -84,6 +85,23 @@ public class StaticObject {
                             Brick brickB = new Brick((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(brickB.imageViewBrick);
                             GameBomber.itembomx2.ItemX2bomb((double) column * picture_width, (double) row * picture_height);
+                            break;
+                        case 'X':
+                            Mapdata.Map[row][column]='x';
+                            Enemy enemy1 = new Enemy((double) column * picture_width, (double) row * picture_height);
+                            enemy1.setLevel(2);
+                            enemymap.add(enemy1);
+                            Grass grass1 = new Grass((double) column * picture_width, (double) row * picture_height);
+                            group.getChildren().add(grass1.imageViewGrass);
+                            break;
+                        case 'S':
+                            //boss duoi theo nguoi
+                            Mapdata.Map[row][column]='x';
+                            Enemy enemy2 = new Enemy((double) column * picture_width, (double) row * picture_height);
+                            enemy2.setLevel(3);
+                            enemymap.add(enemy2);
+                            Grass grass2 = new Grass((double) column * picture_width, (double) row * picture_height);
+                            group.getChildren().add(grass2.imageViewGrass);
                             break;
                             default: break;
                     }
