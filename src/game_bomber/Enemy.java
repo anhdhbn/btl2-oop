@@ -1,6 +1,7 @@
 package game_bomber;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 
 import java.util.Random;
 
@@ -30,7 +31,7 @@ public class Enemy extends AnimatedObject {
         imageViewEnemy.setLayoutY(LayoutY);
 
     }
-    public void checkRamdom(Bomber bomber){
+    public void checkRamdom(Bomber bomber,Pane root){
         int temp=random.nextInt(10);
         temp=temp%2;
         switch (STEP_SIZE){
@@ -278,14 +279,15 @@ public class Enemy extends AnimatedObject {
                 Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
                 bomb.stoptime();
             }
-            GameBomber.primaryStage.close();
-            GameBomber.LOSS.show();
             GameBomber.player=false;
+            bomber.updateimage("DIE",root);
+            GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
+
         }
 
     }
 
-    public void check(Bomber bomber){
+    public void check(Bomber bomber, Pane root){
         switch (STEP_SIZE){
             case 'D':
                 if(check_Right((int)LayoutX,(int)LayoutY,1)){
@@ -371,8 +373,8 @@ public class Enemy extends AnimatedObject {
                 bomb.stoptime();
             }
             GameBomber.player=false;
-            GameBomber.primaryStage.close();
-            GameBomber.LOSS.show();
+            bomber.updateimage("DIE",root);
+            GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
         }
 
             }

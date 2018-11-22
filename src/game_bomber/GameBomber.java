@@ -21,6 +21,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class GameBomber extends Application {
+    static double timeShowDie=0;
     static boolean player= true;
     static boolean NotPutBomb=false;
     static Stage primaryStage=new Stage();
@@ -192,15 +193,21 @@ public class GameBomber extends Application {
         //final long startNanoTime = System.nanoTime();
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
-                if(player){
+                if(timeShowDie!=0){
+                    if( System.nanoTime() / 1000000000.0-timeShowDie>0.2){
+                        timeShowDie=0;
+                        LOSS.show();
+                        primaryStage.close();
+                    }
+                }
                 Enemy enemy;
                 for (int i=0;i<StaticObject.enemymap.size();i++){
                     enemy=(Enemy) StaticObject.enemymap.get(i);
                     if(enemy.getLevel()==1)
-                        enemy.check(bomber);
+                        enemy.check(bomber,root);
                     else
                         if(enemy.getLevel()==2)
-                            enemy.checkRamdom(bomber);
+                            enemy.checkRamdom(bomber,root);
                         else
                             if(enemy.getLevel()==3){
                                 //goi cai ham check tim duoi nguoi
@@ -208,9 +215,10 @@ public class GameBomber extends Application {
                                 System.out.println();
                             }
                 }
+                    System.out.println(Bomb.check);
                 Bomb.Handling(root,bomber);
             }}
-        }.start();
+        .start();
 
         root.getChildren().add(bomber.imageViewBomber);
         //root.getChildren().add(mediaView);

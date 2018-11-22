@@ -161,6 +161,15 @@ public class Bomb extends StaticObject {
                     i--;
                     }
                 }
+            if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width && Math.abs(b.layoutY - bomber.LayoutY) < picture_height*(check+1)) {
+                for(int i=0;i<GameBomber.arrbomb.size();i++){
+                    Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
+                    bomb.stoptime();
+                }
+                GameBomber.player=false;
+                bomber.updateimage("DIE",root);
+                GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
+            }
 
 
             }
@@ -183,6 +192,15 @@ public class Bomb extends StaticObject {
                     i--;
                     }
                 }
+            if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width && Math.abs(b.layoutY - bomber.LayoutY) < picture_height*(check+1)) {
+                for(int i=0;i<GameBomber.arrbomb.size();i++){
+                    Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
+                    bomb.stoptime();
+                }
+                GameBomber.player=false;
+                bomber.updateimage("DIE",root);
+                GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
+            }
             }
 
         x=(int) ((b.imageViewBomb.getLayoutX()-picture_width)/picture_width);
@@ -204,6 +222,15 @@ public class Bomb extends StaticObject {
                     i--;
                     }
                 }
+            if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width * (check+1) && Math.abs(b.layoutY - bomber.LayoutY) < picture_height) {
+                for(int i=0;i<GameBomber.arrbomb.size();i++){
+                    Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
+                    bomb.stoptime();
+                }
+                GameBomber.player=false;
+                bomber.updateimage("DIE",root);
+                GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
+            }
             }
 
         x=(int) ((b.imageViewBomb.getLayoutX()+picture_width)/picture_width);
@@ -224,6 +251,15 @@ public class Bomb extends StaticObject {
                     i--;
                     }
                 }
+            if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width * (check+1) && Math.abs(b.layoutY - bomber.LayoutY) < picture_height) {
+                for(int i=0;i<GameBomber.arrbomb.size();i++){
+                    Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
+                    bomb.stoptime();
+                }
+                GameBomber.player=false;
+                bomber.updateimage("DIE",root);
+                GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
+            }
 
 
         }
@@ -240,24 +276,6 @@ public class Bomb extends StaticObject {
                     GameBomber.timebomb.set(i, temp);
                 }
             }
-        }
-        if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width * (check+1) && Math.abs(b.layoutY - bomber.LayoutY) < picture_height) {
-            for(int i=0;i<GameBomber.arrbomb.size();i++){
-                Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-                bomb.stoptime();
-            }
-            GameBomber.player=false;
-            GameBomber.primaryStage.close();
-            GameBomber.LOSS.show();
-        }
-        if (Math.abs(bomber.LayoutX -b.layoutX) < picture_width && Math.abs(b.layoutY - bomber.LayoutY) < picture_height*(check+1)) {
-            for(int i=0;i<GameBomber.arrbomb.size();i++){
-                Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-                bomb.stoptime();
-            }
-            GameBomber.player=false;
-            GameBomber.primaryStage.close();
-            GameBomber.LOSS.show();
         }
         GameBomber.timefire.add(temptime);
         GameBomber.arrbomb.set(indexbomb,b);

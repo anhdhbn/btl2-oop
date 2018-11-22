@@ -50,6 +50,14 @@ public class Bomber extends AnimatedObject {
                 imageViewBomber.setLayoutY(LayoutY);
                 root.getChildren().add(imageViewBomber);
                 break;
+            case "DIE":
+                root.getChildren().remove(imageViewBomber);
+                imageViewBomber = new ImageView(new Image(getClass().getResourceAsStream("/Image/die.png")));
+                imageViewBomber.setLayoutX(LayoutX);
+                imageViewBomber.setLayoutY(LayoutY);
+                root.getChildren().add(imageViewBomber);
+                break;
+
 
         }
 
@@ -59,6 +67,8 @@ public class Bomber extends AnimatedObject {
             Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
             bomb.stoptime();
         }
+        Bomb.check=1;
+        GameBomber.timeShowDie=0;
         GameBomber.player= true;
         GameBomber.NotPutBomb=false;
         GameBomber.arrbomb.clear();
@@ -77,8 +87,8 @@ public class Bomber extends AnimatedObject {
         for(int i=0;i<StaticObject.enemymap.size();i++){
             root.getChildren().add(((Enemy)(StaticObject.enemymap.get(i))).imageViewEnemy);
         }
+        this.updateimage("DOWN",root);
         this.movingBomber(picture_width,picture_height);
-        root.getChildren().add(this.imageViewBomber);
 
     }
     public void CheckItem(Pane root){
