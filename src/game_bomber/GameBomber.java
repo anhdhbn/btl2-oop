@@ -35,7 +35,7 @@ public class GameBomber extends Application {
     static Item door=new Item();
     static int SPEED=3;
     static Stage LOSS=new Stage();
-    static  Media media = new Media(new File("C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\Tieng-Bom-V-A.mp3").toURI().toString());
+    static  Media media = new Media(new File("C:\\Users\\Anh DH\\Desktop\\New folder (4)\\sound\\Tieng-Bom-V-A.mp3").toURI().toString());
     public static void main(String[] args) {
         launch(args);
     }
@@ -46,7 +46,7 @@ public class GameBomber extends Application {
         final int height = 585;
         final int picture_width = 45;
         final int picture_height = 45;
-        final String path="C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\Vo-Tinh-Xesi-Hoaprox.mp3";
+        final String path="C:\\Users\\Anh DH\\Desktop\\New folder (4)\\sound\\Vo-Tinh-Xesi-Hoaprox.mp3";
         primaryStage.setTitle("Bomberman");
         Pane root = new Pane();
         Media media = new Media(new File(path).toURI().toString());

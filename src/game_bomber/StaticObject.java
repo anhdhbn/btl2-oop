@@ -47,7 +47,7 @@ public class StaticObject {
                 row++;
                 for (int i=0;i<lineData.length();i++){
                     column=i;
-                     Mapdata.Map[row][column] = lineData.charAt(i);
+                    Mapdata.setMapAtPos(row, column, lineData.charAt(i));
                     switch (lineData.charAt(i)) {
                         case '#':
                             Wall wall = new Wall((double) column * picture_width, (double) row * picture_height);
@@ -58,7 +58,7 @@ public class StaticObject {
                             group.getChildren().add(brick.imageViewBrick);
                             break;
                         case 'x':
-                            Mapdata.Map[row][column]=' ';
+                            Mapdata.setMapAtPos(row, column, ' ');
                             Enemy enemy = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy.setLevel(1);
                             enemymap.add(enemy);
@@ -70,25 +70,25 @@ public class StaticObject {
                             group.getChildren().add(grass.imageViewGrass);
                             break;
                         case 'M':
-                            Mapdata.Map[row][column]='*';
+                            Mapdata.setMapAtPos(row, column, '*');
                             Brick brickM = new Brick((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(brickM.imageViewBrick);
                             GameBomber.door.ImageViewdoor((double) column * picture_width, (double) row * picture_height);
                             break;
                         case 'R':
-                            Mapdata.Map[row][column]='*';
+                            Mapdata.setMapAtPos(row, column, '*');
                             Brick brickR = new Brick((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(brickR.imageViewBrick);
                             GameBomber.itemrun.ItemRun((double) column * picture_width, (double) row * picture_height);
                             break;
                         case 'B':
-                            Mapdata.Map[row][column]='*';
+                            Mapdata.setMapAtPos(row, column, '*');
                             Brick brickB = new Brick((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(brickB.imageViewBrick);
                             GameBomber.itembomx2.ItemX2bomb((double) column * picture_width, (double) row * picture_height);
                             break;
                         case 'X':
-                            Mapdata.Map[row][column]=' ';
+                            Mapdata.setMapAtPos(row, column, ' ');
                             Enemy enemy1 = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy1.setLevel(2);
                             enemymap.add(enemy1);
@@ -97,7 +97,7 @@ public class StaticObject {
                             break;
                         case 'S':
                             //boss duoi theo nguoi
-                            Mapdata.Map[row][column]=' ';
+                            Mapdata.setMapAtPos(row, column, ' ');
                             Enemy enemy2 = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy2.setLevel(3);
                             enemymap.add(enemy2);

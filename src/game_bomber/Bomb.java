@@ -18,7 +18,7 @@ public class Bomb extends StaticObject {
     public boolean Left=false;
     public boolean Up=false;
     public boolean Down=false;
-    static Media mediabom = new Media(new File("C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\tiengbomsapno.mp3").toURI().toString());
+    static Media mediabom = new Media(new File("C:\\Users\\Anh DH\\Desktop\\New folder (4)\\sound\\tiengbomsapno.mp3").toURI().toString());
     public MediaPlayer mediaPlayer1=new MediaPlayer(mediabom);
     public void starttime(){
         mediaPlayer1.setStartTime(Duration.millis(500));
@@ -43,9 +43,9 @@ public class Bomb extends StaticObject {
         int x=(int) (layoutX/picture_width);
         int y=(int) ((layoutY-picture_height)/picture_height);
         FireBom fireBom=new FireBom();
-        if((Mapdata.Map[y][x]!='#')){
+        if((Mapdata.getMapAtPos(y, x)!='#')){
             if(GameBomber.Item){
-                if(Mapdata.Map[y-1][x]!='#')
+                if(Mapdata.getMapAtPos(y-1, x)!='#')
                     fireBomb=new FireBomb(layoutX,layoutY-picture_height*2);
                 else
                     fireBomb=new FireBomb(layoutX,layoutY-picture_height);
@@ -58,9 +58,9 @@ public class Bomb extends StaticObject {
         }
         x=(int) (layoutX/picture_width);
         y=(int) ((layoutY+picture_height)/picture_height);
-        if(Mapdata.Map[y][x]!='#'){
+        if(Mapdata.getMapAtPos(y, x)!='#'){
             if(GameBomber.Item){
-                if(Mapdata.Map[y+1][x]!='#')
+                if(Mapdata.getMapAtPos(y+1, x)!='#')
                     fireBomb=new FireBomb(layoutX,layoutY+picture_height);
                 else
                     fireBomb=new FireBomb(layoutX,layoutY);
@@ -73,9 +73,9 @@ public class Bomb extends StaticObject {
         }
        x=(int) ((layoutX-picture_width)/picture_width);
         y=(int) (layoutY/picture_height);
-        if(Mapdata.Map[y][x]!='#'){
+        if(Mapdata.getMapAtPos(y, x)!='#'){
             if(GameBomber.Item){
-                if(Mapdata.Map[y][x-1]!='#')
+                if(Mapdata.getMapAtPos(y, x-1)!='#')
                     fireBomb=new FireBomb(layoutX-picture_width*2,layoutY);
                 else
                     fireBomb=new FireBomb(layoutX-picture_width,layoutY);
@@ -89,9 +89,9 @@ public class Bomb extends StaticObject {
         }
         x=(int) ((layoutX+picture_width)/picture_width);
         y=(int) (layoutY/picture_height);
-        if(Mapdata.Map[y][x]!='#'){
+        if(Mapdata.getMapAtPos(y, x)!='#'){
             if(GameBomber.Item){
-                if(Mapdata.Map[y][x+1]!='#')
+                if(Mapdata.getMapAtPos(y, x+1)!='#')
                     fireBomb=new FireBomb(layoutX+picture_width,layoutY);
                 else
                     fireBomb=new FireBomb(layoutX,layoutY);
@@ -110,7 +110,7 @@ public class Bomb extends StaticObject {
     public static void replaceMap(int x, int y, Pane root, Bomber bomber, ArrayList enemymap){
         final int picture_width = 45;
         final int picture_height = 45;
-        Mapdata.Map[y][x]=' ';
+        Mapdata.setMapAtPos(y, x,' ');
         Grass grass=new Grass(x*picture_width,y*picture_height);
         root.getChildren().add(grass.imageViewGrass);
         if(x*picture_width==GameBomber.itembomx2.layoutX&&y*picture_height==GameBomber.itembomx2.layoutY){
@@ -145,13 +145,13 @@ public class Bomb extends StaticObject {
         int x=(int) (b.imageViewBomb.getLayoutX()/picture_width);
         int y=(int) ((b.imageViewBomb.getLayoutY()-picture_height)/picture_height);
         Enemy enemyTemp;
-        if((Mapdata.Map[y][x]=='*')||Mapdata.Map[y][x]==' '){
+        if((Mapdata.getMapAtPos(y, x)=='*')||Mapdata.getMapAtPos(y, x)==' '){
             if(GameBomber.Item) {
-                if (Mapdata.Map[y - 1][x] == '*' /*|| Mapdata.Map[y - 1][x]==' '*/) {
+                if (Mapdata.getMapAtPos(y - 1, x) == '*' /*|| Mapdata.Map[y - 1][x]==' '*/) {
                     replaceMap(x, y-1, root, bomber, StaticObject.enemymap);
                 }
             }
-            if(Mapdata.Map[y][x]=='*')
+            if(Mapdata.getMapAtPos(y, x)=='*')
                 replaceMap(x,y,root,bomber,StaticObject.enemymap);
             for (int i = 0; i < StaticObject.enemymap.size(); i++) {
                 enemyTemp = (Enemy) StaticObject.enemymap.get(i);
@@ -176,13 +176,13 @@ public class Bomb extends StaticObject {
 
         x=(int) (b.imageViewBomb.getLayoutX()/picture_width);
         y=(int) ((b.imageViewBomb.getLayoutY()+picture_height)/picture_height);
-        if(Mapdata.Map[y][x]=='*'||Mapdata.Map[y][x]==' ') {
+        if(Mapdata.getMapAtPos(y, x)=='*'||Mapdata.getMapAtPos(y, x)==' ') {
             if (GameBomber.Item) {
-                if (Mapdata.Map[y + 1][x] == '*') {
+                if (Mapdata.getMapAtPos(y + 1, x) == '*') {
                     replaceMap(x, y + 1, root, bomber, StaticObject.enemymap);
                 }
             }
-            if(Mapdata.Map[y][x]=='*')
+            if(Mapdata.getMapAtPos(y, x)=='*')
                 replaceMap(x, y, root, bomber, StaticObject.enemymap);
             for (int i = 0; i < StaticObject.enemymap.size(); i++) {
                 enemyTemp = (Enemy) StaticObject.enemymap.get(i);
@@ -205,13 +205,13 @@ public class Bomb extends StaticObject {
 
         x=(int) ((b.imageViewBomb.getLayoutX()-picture_width)/picture_width);
         y=(int) (b.imageViewBomb.getLayoutY()/picture_height);
-        if(Mapdata.Map[y][x]=='*'||Mapdata.Map[y][x]==' '){
+        if(Mapdata.getMapAtPos(y, x)=='*'||Mapdata.getMapAtPos(y, x)==' '){
             if(GameBomber.Item) {
-                if (Mapdata.Map[y][x-1] == '*' /*|| Mapdata.Map[y ][x-1]==' '*/) {
+                if (Mapdata.getMapAtPos(y, x-1) == '*' /*|| Mapdata.Map[y ][x-1]==' '*/) {
                     replaceMap(x-1, y, root, bomber, StaticObject.enemymap);
                 }
             }
-            if(Mapdata.Map[y][x]=='*')
+            if(Mapdata.getMapAtPos(y, x)=='*')
                 replaceMap(x, y, root, bomber, StaticObject.enemymap);
 
             for (int i = 0; i < StaticObject.enemymap.size(); i++) {
@@ -235,13 +235,13 @@ public class Bomb extends StaticObject {
 
         x=(int) ((b.imageViewBomb.getLayoutX()+picture_width)/picture_width);
         y=(int) (b.imageViewBomb.getLayoutY()/picture_height);
-        if(Mapdata.Map[y][x]=='*'||Mapdata.Map[y][x]==' '){
+        if(Mapdata.getMapAtPos(y, x)=='*'||Mapdata.getMapAtPos(y, x)==' '){
             if(GameBomber.Item) {
-                if (Mapdata.Map[y][x+1] == '*' /*|| Mapdata.Map[y ][x+1]==' '*/) {
+                if (Mapdata.getMapAtPos(y, x + 1) == '*' /*|| Mapdata.Map[y ][x+1]==' '*/) {
                     replaceMap(x+1, y, root, bomber, StaticObject.enemymap);
                 }
             }
-            if(Mapdata.Map[y][x]=='*')
+            if(Mapdata.getMapAtPos(y, x)=='*')
                 replaceMap(x, y, root, bomber, StaticObject.enemymap);
             for (int i = 0; i < StaticObject.enemymap.size(); i++) {
                 enemyTemp = (Enemy) StaticObject.enemymap.get(i);

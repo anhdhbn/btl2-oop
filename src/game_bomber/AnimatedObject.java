@@ -39,10 +39,10 @@ public class AnimatedObject {
 
         int locationRow1 = (layoutY-SPEED)/picture_height;
         int locationColumn1 = (layoutX)/picture_width;
-        char tem1 = Mapdata.Map[locationRow1][locationColumn1];
+        char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
         int locationRow2 = (layoutY-SPEED)/picture_height;
         int locationColumn2 = (layoutX+picture_width-1)/picture_width;
-        char tem2 = Mapdata.Map[locationRow2][locationColumn2];
+        char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
         if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
             return false;
 
@@ -69,10 +69,10 @@ public class AnimatedObject {
     public boolean check_Down (int layoutX, int layoutY,int SPEED){
         int locationRow1 = (layoutY+SPEED+picture_height-1)/picture_height;
         int locationColumn1 = (layoutX)/picture_width;
-        char tem1 = Mapdata.Map[locationRow1][locationColumn1];
+        char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
         int locationRow2 = (layoutY+SPEED+picture_height-1)/picture_height;
         int locationColumn2 = (layoutX+picture_width-1)/picture_width;
-        char tem2 = Mapdata.Map[locationRow2][locationColumn2];
+        char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
         if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
             return false;
         for(int i=0;i<GameBomber.arrbomb.size();i++) {
@@ -98,10 +98,10 @@ public class AnimatedObject {
     public boolean check_Left (int layoutX,int layoutY,int SPEED){
         int locationRow1 = (layoutY)/picture_height;
         int locationColumn1 = (layoutX-SPEED)/picture_width;
-        char tem1 = Mapdata.Map[locationRow1][locationColumn1];
+        char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
         int locationRow2 = (layoutY+picture_height-1)/picture_height;
         int locationColumn2 = (layoutX-SPEED)/picture_width;
-        char tem2 = Mapdata.Map[locationRow2][locationColumn2];
+        char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
         if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
             return false;
         for(int i=0;i<GameBomber.arrbomb.size();i++) {
@@ -123,10 +123,10 @@ public class AnimatedObject {
     public boolean check_Right (int layoutX,int layoutY,int SPEED){
         int locationRow1 = (layoutY)/picture_height;
         int locationColumn1 = (layoutX+SPEED+picture_width-1)/picture_width;
-        char tem1 = Mapdata.Map[locationRow1][locationColumn1];
+        char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
         int locationRow2 = (layoutY+picture_height-1)/picture_height;
         int locationColumn2 = (layoutX+SPEED+picture_width-1)/picture_width;
-        char tem2 = Mapdata.Map[locationRow2][locationColumn2];
+        char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
         if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
             return false;
         for(int i=0;i<GameBomber.arrbomb.size();i++) {
