@@ -58,6 +58,7 @@ public class StaticObject {
                             group.getChildren().add(brick.imageViewBrick);
                             break;
                         case 'x':
+                            Mapdata.Map[row][column]=' ';
                             Enemy enemy = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy.setLevel(1);
                             enemymap.add(enemy);
@@ -87,7 +88,7 @@ public class StaticObject {
                             GameBomber.itembomx2.ItemX2bomb((double) column * picture_width, (double) row * picture_height);
                             break;
                         case 'X':
-                            Mapdata.Map[row][column]='x';
+                            Mapdata.Map[row][column]=' ';
                             Enemy enemy1 = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy1.setLevel(2);
                             enemymap.add(enemy1);
@@ -96,7 +97,7 @@ public class StaticObject {
                             break;
                         case 'S':
                             //boss duoi theo nguoi
-                            Mapdata.Map[row][column]='x';
+                            Mapdata.Map[row][column]=' ';
                             Enemy enemy2 = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy2.setLevel(3);
                             enemymap.add(enemy2);
