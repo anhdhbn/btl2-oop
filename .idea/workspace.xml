@@ -3,11 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Map_level/Map1.txt" beforeDir="false" afterPath="$PROJECT_DIR$/src/Map_level/Map1.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game_bomber/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game_bomber/Enemy.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game_bomber/GameBomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game_bomber/GameBomber.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game_bomber/Mapdata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game_bomber/Mapdata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/game_bomber/StaticObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game_bomber/StaticObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/AnimatedObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/AnimatedObject.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/Bomb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/Bomb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/Bomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/Bomber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/Enemy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/Enemy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/GameBomber.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/GameBomber.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/Mapdata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/Mapdata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/gamebomber/StaticObject.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/gamebomber/StaticObject.java" afterDir="false" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -17,6 +19,11 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/New_folder__4_$GameBomber.ic" NAME="GameBomber Coverage Results" MODIFIED="1543117206200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>gamebomber.*</FILTER>
+    </SUITE>
   </component>
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
@@ -172,25 +179,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="5" />
-          <entry key="txt" value="2" />
+          <entry key="java" value="6" />
+          <entry key="txt" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="5" />
-          <entry key="PLAIN_TEXT" value="2" />
+          <entry key="JAVA" value="6" />
+          <entry key="PLAIN_TEXT" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="692" />
+          <entry key="java" value="1905" />
           <entry key="txt" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="692" />
+          <entry key="JAVA" value="1905" />
           <entry key="PLAIN_TEXT" value="1" />
         </counts>
       </usages-collector>
@@ -202,105 +209,61 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/GameBomber.java">
+        <entry file="file://$PROJECT_DIR$/src/gamebomber/GameBomber.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="328">
-              <caret line="223" column="34" selection-start-line="223" selection-start-column="30" selection-end-line="223" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/Mapdata.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="527">
-              <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="docComment;field#width#0;class#Mapdata#0" />
-                <element signature="docComment;field#height#0;class#Mapdata#0" />
-                <element signature="docComment;field#nodes#0;class#Mapdata#0" />
-                <element signature="e#754#755#0" expanded="true" />
-                <element signature="e#786#787#0" expanded="true" />
-                <element signature="docComment;method#findPath#0;class#Mapdata#0" />
-                <element signature="docComment;method#calcPath#0;class#Mapdata#0" />
-                <element signature="method#calcPath#0;class#Mapdata#0" />
-                <element signature="docComment;method#lowestFInList#0;class#Mapdata#0" />
-                <element signature="docComment;method#getAdjacent#0;class#Mapdata#0" />
-                <element signature="method#getAdjacent#0;class#Mapdata#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Map_level/Map1.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Map_level/Map2.txt">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="187">
-              <caret line="11" column="7" selection-start-line="11" selection-start-column="7" selection-end-line="11" selection-end-column="7" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/Node.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="556">
-              <caret line="211" selection-start-line="211" selection-end-line="211" />
+            <state relative-caret-position="1620">
+              <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/Enemy.java">
+        <entry file="file://$PROJECT_DIR$/src/gamebomber/Enemy.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="303" column="29" lean-forward="true" selection-start-line="303" selection-start-column="29" selection-end-line="303" selection-end-column="29" />
+            <state relative-caret-position="469">
+              <caret line="356" column="51" selection-start-line="356" selection-start-column="51" selection-end-line="356" selection-end-column="51" />
               <folding>
+                <element signature="method#Enemy#0;class#Enemy#0" />
                 <element signature="method#movingBomber#0;class#Enemy#0" />
+                <element signature="method#checkRandom#0;class#Enemy#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/Bomb.java">
+        <entry file="file://$PROJECT_DIR$/src/gamebomber/Mapdata.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="366">
+              <caret line="82" column="51" lean-forward="true" selection-start-line="82" selection-start-column="51" selection-end-line="82" selection-end-column="51" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="docComment;field#width#0;class#Mapdata#0" />
+                <element signature="docComment;field#height#0;class#Mapdata#0" />
+                <element signature="docComment;field#nodes#0;class#Mapdata#0" />
+                <element signature="e#1861#1862#0" expanded="true" />
+                <element signature="e#1893#1894#0" expanded="true" />
+                <element signature="e#2306#2307#0" expanded="true" />
+                <element signature="e#2364#2365#0" expanded="true" />
+                <element signature="docComment;method#findPath#0;class#Mapdata#0" />
+                <element signature="docComment;method#calcPath#0;class#Mapdata#0" />
+                <element signature="method#calcPath#0;class#Mapdata#0" />
+                <element signature="docComment;method#lowestFInList#0;class#Mapdata#0" />
+                <element signature="docComment;method#getAdjacent#0;class#Mapdata#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/gamebomber/Bomb.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="323">
-              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+              <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
               <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#920#921#0" expanded="true" />
+                <element signature="e#955#956#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/AnimatedObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="765">
-              <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/game_bomber/StaticObject.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="561">
-              <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
             </state>
           </provider>
         </entry>
@@ -324,8 +287,8 @@
       <find>Mapdata.Map[y][x]</find>
       <find>Mapdata.Map[y-1][x]</find>
       <find>bomber</find>
-      <find>System.out.println</find>
       <find>Enemy</find>
+      <find>System.out.println</find>
     </findStrings>
     <replaceStrings>
       <replace>Game_Bomber</replace>
@@ -374,6 +337,13 @@
         <option value="$PROJECT_DIR$/src/game_bomber/Mapdata.java" />
         <option value="$PROJECT_DIR$/src/game_bomber/GameBomber.java" />
         <option value="$PROJECT_DIR$/src/game_bomber/Enemy.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/AnimatedObject.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/Bomb.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/StaticObject.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/GameBomber.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/Bomber.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/Mapdata.java" />
+        <option value="$PROJECT_DIR$/src/gamebomber/Enemy.java" />
       </list>
     </option>
   </component>
@@ -385,8 +355,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="250" />
-    <option name="y" value="211" />
+    <option name="x" value="366" />
+    <option name="y" value="78" />
     <option name="width" value="1016" />
     <option name="height" value="795" />
   </component>
@@ -421,7 +391,7 @@
               <item name="New folder (4)" type="b2602c69:ProjectViewProjectNode" />
               <item name="New folder (4)" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="game_bomber" type="462c0819:PsiDirectoryNode" />
+              <item name="gamebomber" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="New folder (4)" type="b2602c69:ProjectViewProjectNode" />
@@ -450,7 +420,7 @@
     <property name="OverrideImplement.combined" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543056766690" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543118147071" />
     <property name="dynamic.classpath" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="recentsLimit" value="5" />
@@ -492,12 +462,12 @@
       </method>
     </configuration>
     <configuration name="GameBomber" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="game_bomber.GameBomber" />
+      <option name="MAIN_CLASS_NAME" value="gamebomber.GameBomber" />
       <module name="Game_Bomber" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game_bomber.*" />
+          <option name="PATTERN" value="gamebomber.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -511,7 +481,7 @@
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="game_bomber.*" />
+          <option name="PATTERN" value="gamebomber.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -653,17 +623,18 @@
       <workItem from="1542868665938" duration="131000" />
       <workItem from="1542938423278" duration="635000" />
       <workItem from="1543052075004" duration="5283000" />
-      <workItem from="1543107890612" duration="1724000" />
+      <workItem from="1543107890612" duration="10245000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="227034000" />
+    <option name="totallyTimeSpent" value="235555000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.31982943" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.6703755" visible="true" weight="0.31982943" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" />
       <window_info id="Designer" order="3" />
@@ -673,7 +644,7 @@
       <window_info id="Learn" order="7" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32977098" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.4978308" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.4208243" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4175705" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -686,7 +657,8 @@
       <window_info anchor="bottom" id="Event Log" order="12" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.3286334" />
       <window_info anchor="bottom" id="Database Changes" order="14" show_stripe_button="false" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="15" visible="true" weight="0.37635574" />
+      <window_info anchor="bottom" id="Terminal" order="15" weight="0.37635574" />
+      <window_info anchor="right" id="Coverage" side_tool="true" weight="0.32995737" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.24962178" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -749,16 +721,40 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/game_bomber/Mapdata.java</url>
+          <url>file://$PROJECT_DIR$/src/gamebomber/Mapdata.java</url>
           <line>78</line>
           <properties />
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/game_bomber/Mapdata.java</url>
+          <url>file://$PROJECT_DIR$/src/gamebomber/Mapdata.java</url>
           <line>84</line>
           <properties />
           <option name="timeStamp" value="24" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gamebomber/Mapdata.java</url>
+          <line>28</line>
+          <properties />
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gamebomber/Enemy.java</url>
+          <line>291</line>
+          <properties />
+          <option name="timeStamp" value="34" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gamebomber/Enemy.java</url>
+          <line>293</line>
+          <properties />
+          <option name="timeStamp" value="35" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/gamebomber/Enemy.java</url>
+          <line>314</line>
+          <properties />
+          <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -824,7 +820,7 @@
     <entry file="file://$PROJECT_DIR$/src/Image/itembomx2.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Item.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Item.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="5" selection-end-column="32" />
@@ -840,10 +836,13 @@
     <entry file="file://$PROJECT_DIR$/src/Image/gameover.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/FireBom.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/FireBom.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="9" column="35" selection-start-line="9" selection-start-column="35" selection-end-line="9" selection-end-column="35" />
+          <folding>
+            <element signature="e#211#212#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -854,59 +853,55 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Portal.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Portal.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="5" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Wall.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Wall.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="106" selection-start-line="6" selection-start-column="30" selection-end-line="6" selection-end-column="106" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Move_Bomber.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/MoveBomber.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="34">
           <caret line="2" column="26" selection-start-line="2" selection-start-column="26" selection-end-line="2" selection-end-column="26" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/gameover.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/gameover.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="94" selection-start-line="6" selection-start-column="94" selection-end-line="6" selection-end-column="94" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Grass.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Grass.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="99" selection-start-line="6" selection-start-column="99" selection-end-line="6" selection-end-column="99" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Brick.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Brick.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="6" column="108" selection-start-line="6" selection-start-column="3" selection-end-line="6" selection-end-column="108" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/FireBomb.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/FireBomb.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="119">
           <caret line="8" column="103" selection-start-line="8" selection-start-column="103" selection-end-line="8" selection-end-column="103" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Bomber.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="94" column="19" selection-start-line="94" selection-start-column="19" selection-end-line="94" selection-end-column="19" />
         </state>
       </provider>
     </entry>
@@ -924,40 +919,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Bomb.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/AnimatedObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="765">
-          <caret line="55" column="13" selection-start-line="55" selection-start-column="13" selection-end-line="55" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/StaticObject.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="47" column="37" selection-start-line="47" selection-start-column="37" selection-end-line="47" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Node.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="556">
-          <caret line="211" selection-start-line="211" selection-end-line="211" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/Map_level/Map2.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -965,47 +926,89 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Node.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="556">
+          <caret line="211" selection-start-line="211" selection-end-line="211" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Map_level/Map1.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
+        <state relative-caret-position="204">
+          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/GameBomber.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Bomber.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="328">
-          <caret line="223" column="34" selection-start-line="223" selection-start-column="30" selection-end-line="223" selection-end-column="34" />
+        <state relative-caret-position="271">
+          <caret line="86" column="18" selection-start-line="86" selection-start-column="18" selection-end-line="86" selection-end-column="18" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Mapdata.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/GameBomber.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1620">
+          <caret line="130" column="25" selection-start-line="130" selection-start-column="25" selection-end-line="130" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/StaticObject.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
-          <caret line="40" column="37" lean-forward="true" selection-start-line="40" selection-start-column="37" selection-end-line="40" selection-end-column="37" />
+          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/AnimatedObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="136" column="66" selection-start-line="136" selection-start-column="61" selection-end-line="136" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Bomb.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="34" column="24" selection-start-line="34" selection-start-column="24" selection-end-line="34" selection-end-column="24" />
+          <folding>
+            <element signature="e#920#921#0" expanded="true" />
+            <element signature="e#955#956#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Mapdata.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="366">
+          <caret line="82" column="51" lean-forward="true" selection-start-line="82" selection-start-column="51" selection-end-line="82" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="docComment;field#width#0;class#Mapdata#0" />
             <element signature="docComment;field#height#0;class#Mapdata#0" />
             <element signature="docComment;field#nodes#0;class#Mapdata#0" />
-            <element signature="e#754#755#0" expanded="true" />
-            <element signature="e#786#787#0" expanded="true" />
+            <element signature="e#1861#1862#0" expanded="true" />
+            <element signature="e#1893#1894#0" expanded="true" />
+            <element signature="e#2306#2307#0" expanded="true" />
+            <element signature="e#2364#2365#0" expanded="true" />
             <element signature="docComment;method#findPath#0;class#Mapdata#0" />
             <element signature="docComment;method#calcPath#0;class#Mapdata#0" />
             <element signature="method#calcPath#0;class#Mapdata#0" />
             <element signature="docComment;method#lowestFInList#0;class#Mapdata#0" />
             <element signature="docComment;method#getAdjacent#0;class#Mapdata#0" />
-            <element signature="method#getAdjacent#0;class#Mapdata#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/game_bomber/Enemy.java">
+    <entry file="file://$PROJECT_DIR$/src/gamebomber/Enemy.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="303" column="29" lean-forward="true" selection-start-line="303" selection-start-column="29" selection-end-line="303" selection-end-column="29" />
+        <state relative-caret-position="469">
+          <caret line="356" column="51" selection-start-line="356" selection-start-column="51" selection-end-line="356" selection-end-column="51" />
           <folding>
+            <element signature="method#Enemy#0;class#Enemy#0" />
             <element signature="method#movingBomber#0;class#Enemy#0" />
+            <element signature="method#checkRandom#0;class#Enemy#0" />
           </folding>
         </state>
       </provider>

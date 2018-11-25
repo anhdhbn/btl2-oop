@@ -1,4 +1,5 @@
 package gamebomber;
+
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -12,404 +13,420 @@ public class Enemy extends AnimatedObject {
     private boolean walking;
     private boolean fixing;
     private int level;
+    private boolean checkX;
+    private boolean checkY;
+    private String lastDirection = "A";
 
-
-    Random random=new Random();
+    Random random = new Random();
     List<Node> listNode = new ArrayList<>();
-    char STEP_SIZE ='D';
+    char STEP_SIZE = 'D';
     ImageView imageViewEnemy = new ImageView(new Image(getClass().getResourceAsStream("/Image/enemy.png")));
+
     public int getLevel() {
         return level;
     }
 
     public void setLevel(int level) {
-        this.level=level;
+        this.level = level;
     }
-    public Enemy(double LayoutX,double LayoutY) {
-        super(LayoutX,LayoutY);
+
+    public Enemy(double LayoutX, double LayoutY) {
+        super(LayoutX, LayoutY);
         imageViewEnemy.setLayoutX(LayoutX);
         imageViewEnemy.setLayoutY(LayoutY);
         walking = false;
         fixing = false;
     }
-    public void movingBomber (double LayoutX, double LayoutY){
-        this.LayoutX=LayoutX;
-        this.LayoutY=LayoutY;
+
+    public void movingBomber(double LayoutX, double LayoutY) {
+        this.LayoutX = LayoutX;
+        this.LayoutY = LayoutY;
         imageViewEnemy.setLayoutX(LayoutX);
         imageViewEnemy.setLayoutY(LayoutY);
-
     }
-    public void checkRandom(Bomber bomber,Pane root){
-        int temp=random.nextInt(10);
-        temp=temp%2;
-        switch (STEP_SIZE){
+
+    public void checkRandom(Bomber bomber, Pane root) {
+        int temp = random.nextInt(10);
+        temp = temp % 2;
+        switch (STEP_SIZE) {
             case 'D':
-                if(temp==1) {
-                    if(random.nextInt()%2==1) {
+                if (temp == 1) {
+                    if (random.nextInt() % 2 == 1) {
                         if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
                             movingBomber(LayoutX + 1, LayoutY);
                             STEP_SIZE = 'D';
                             break;
                         }
                     }
-                    if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                        movingBomber(LayoutX,LayoutY+1);
-                        STEP_SIZE='S';
-                    }
-                    else
-                        if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                            movingBomber(LayoutX, LayoutY - 1);
-                            STEP_SIZE = 'W';
-                    }
-                        else
-                            if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                                movingBomber(LayoutX+1,LayoutY);
-                                STEP_SIZE='D';
-                    }
-                            else
-                                if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                                    STEP_SIZE='A';
-                                    movingBomber(LayoutX-1,LayoutY);
+                    if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
+                    } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY - 1);
+                        STEP_SIZE = 'W';
+                    } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX + 1, LayoutY);
+                        STEP_SIZE = 'D';
+                    } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        STEP_SIZE = 'A';
+                        movingBomber(LayoutX - 1, LayoutY);
 
-                                }
+                    }
 
-                }
-                else {
-                    if(random.nextInt()%2==1){
-                        if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                            STEP_SIZE='D';
-                            movingBomber(LayoutX+1,LayoutY);
+                } else {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                            STEP_SIZE = 'D';
+                            movingBomber(LayoutX + 1, LayoutY);
                             break;
                         }
                     }
-                    if(check_Up((int)LayoutX,(int)LayoutY,1)) {
+                    if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
                         movingBomber(LayoutX, LayoutY - 1);
                         STEP_SIZE = 'W';
-                    }
-                    else
-                        if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX,LayoutY+1);
-                            STEP_SIZE='S';
-                    }
-                        else
-                            if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                                STEP_SIZE='D';
-                                movingBomber(LayoutX+1,LayoutY);
+                    } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
+                    } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        STEP_SIZE = 'D';
+                        movingBomber(LayoutX + 1, LayoutY);
 
-                        }
-                            else
-                                if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                                    movingBomber(LayoutX-1,LayoutY);
-                                    STEP_SIZE='A';
-                           }
+                    } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        STEP_SIZE = 'A';
+                    }
 
 
                 }
                 break;
             case 'A':
-                if(temp==1) {
-                    if(random.nextInt()%2==1){
-                        if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX-1,LayoutY);
-                            STEP_SIZE='A';
+                if (temp == 1) {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                            movingBomber(LayoutX - 1, LayoutY);
+                            STEP_SIZE = 'A';
                         }
                         break;
                     }
-                    if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                        movingBomber(LayoutX,LayoutY+1);
-                        STEP_SIZE='S';
-                    }
-                    else
-                        if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                            movingBomber(LayoutX, LayoutY - 1);
-                            STEP_SIZE = 'W';
-                    }
-                        else
-                            if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                                movingBomber(LayoutX-1,LayoutY);
-                                STEP_SIZE='A';
-                               }
-                               else
-                                if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                                    STEP_SIZE='D';
-                                    movingBomber(LayoutX+1,LayoutY);
-                    }
-                }
-                else {
-                    if(random.nextInt()%2==1){
-                        if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX-1,LayoutY);
-                            STEP_SIZE='A';
-                        }
-                        break;
-                    }
-                    if(check_Up((int)LayoutX,(int)LayoutY,1)) {
+                    if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
+                    } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
                         movingBomber(LayoutX, LayoutY - 1);
                         STEP_SIZE = 'W';
+                    } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        STEP_SIZE = 'A';
+                    } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        STEP_SIZE = 'D';
+                        movingBomber(LayoutX + 1, LayoutY);
                     }
-                    else
-                        if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX,LayoutY+1);
-                            STEP_SIZE='S';
-                    }
-                        else
-                            if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                                STEP_SIZE='A';
-                                movingBomber(LayoutX-1,LayoutY);
-                            }
-                            else
-                                if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                                    movingBomber(LayoutX+1,LayoutY);
-                                    STEP_SIZE='D';
+                } else {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                            movingBomber(LayoutX - 1, LayoutY);
+                            STEP_SIZE = 'A';
                         }
+                        break;
+                    }
+                    if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY - 1);
+                        STEP_SIZE = 'W';
+                    } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
+                    } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        STEP_SIZE = 'A';
+                        movingBomber(LayoutX - 1, LayoutY);
+                    } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX + 1, LayoutY);
+                        STEP_SIZE = 'D';
+                    }
 
 
                 }
                 break;
             case 'S':
-                if(temp==1) {
-                    if(random.nextInt()%2==1){
-                        if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX,LayoutY+1);
-                            STEP_SIZE='S';
+                if (temp == 1) {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                            movingBomber(LayoutX, LayoutY + 1);
+                            STEP_SIZE = 'S';
                         }
                         break;
                     }
-                    if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                        movingBomber(LayoutX-1,LayoutY);
-                        STEP_SIZE='A';}
-                    else
-                        if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX+1,LayoutY);
-                            STEP_SIZE='D';
+                    if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        STEP_SIZE = 'A';
+                    } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX + 1, LayoutY);
+                        STEP_SIZE = 'D';
+                    } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
+                    } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                        STEP_SIZE = 'W';
+                        movingBomber(LayoutX, LayoutY - 1);
                     }
-                        else
-                            if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                                movingBomber(LayoutX,LayoutY+1);
-                                STEP_SIZE='S';
-                    }
-                            else
-                                if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                                    STEP_SIZE = 'W';
-                                    movingBomber(LayoutX, LayoutY - 1);
-                    }
-                }
-                else {
-                    if(random.nextInt()%2==1){
-                        if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX,LayoutY+1);
-                            STEP_SIZE='S';
+                } else {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                            movingBomber(LayoutX, LayoutY + 1);
+                            STEP_SIZE = 'S';
                         }
                         break;
                     }
-                    if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                        movingBomber(LayoutX+1,LayoutY);
-                        STEP_SIZE='D';
-                    }
-                    else
-                        if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX-1,LayoutY);
-                            STEP_SIZE='A';}
-                        else
-                            if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                                movingBomber(LayoutX,LayoutY+1);
-                                 STEP_SIZE='S';
-                    }
-                            else
-                                if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                                    movingBomber(LayoutX, LayoutY - 1);
-                                    STEP_SIZE = 'W';
+                    if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX + 1, LayoutY);
+                        STEP_SIZE = 'D';
+                    } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        STEP_SIZE = 'A';
+                    } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
+                    } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY - 1);
+                        STEP_SIZE = 'W';
                     }
 
                 }
                 break;
             case 'W':
-                if(temp==1) {
-                    if(random.nextInt()%2==1){
-                        if(check_Up((int)LayoutX,(int)LayoutY,1)) {
+                if (temp == 1) {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
                             movingBomber(LayoutX, LayoutY - 1);
                             STEP_SIZE = 'W';
                         }
                         break;
                     }
-                    if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                        movingBomber(LayoutX-1,LayoutY);
-                        STEP_SIZE='A';}
-
-                    else
-                        if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX+1,LayoutY);
-                            STEP_SIZE='D';
+                    if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        STEP_SIZE = 'A';
+                    } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX + 1, LayoutY);
+                        STEP_SIZE = 'D';
+                    } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY - 1);
+                        STEP_SIZE = 'W';
+                    } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY + 1);
+                        STEP_SIZE = 'S';
                     }
-                        else
-                            if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                                movingBomber(LayoutX, LayoutY - 1);
-                                STEP_SIZE = 'W';
-                    }
-                            else
-                                if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                                    movingBomber(LayoutX,LayoutY+1);
-                                    STEP_SIZE='S';
-                    }
-                }
-                else {
-                    if(random.nextInt()%2==1){
-                        if(check_Up((int)LayoutX,(int)LayoutY,1)) {
+                } else {
+                    if (random.nextInt() % 2 == 1) {
+                        if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
                             movingBomber(LayoutX, LayoutY - 1);
                             STEP_SIZE = 'W';
                         }
                         break;
                     }
-                    if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                        movingBomber(LayoutX+1,LayoutY);
-                        STEP_SIZE='D';
-                    }
-                    else
-                        if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                            movingBomber(LayoutX-1,LayoutY);
-                            STEP_SIZE='A';}
-                        else
-                            if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                                movingBomber(LayoutX, LayoutY - 1);
-                                STEP_SIZE = 'W';
-                    }
-                            else
-                                if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                                    STEP_SIZE='S';
-                                    movingBomber(LayoutX,LayoutY+1);
+                    if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX + 1, LayoutY);
+                        STEP_SIZE = 'D';
+                    } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        STEP_SIZE = 'A';
+                    } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                        movingBomber(LayoutX, LayoutY - 1);
+                        STEP_SIZE = 'W';
+                    } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                        STEP_SIZE = 'S';
+                        movingBomber(LayoutX, LayoutY + 1);
                     }
 
                 }
                 break;
         }
-        if (Math.abs(bomber.LayoutX -this.LayoutX) < picture_width && Math.abs(this.LayoutY - bomber.LayoutY) < picture_height) {
-            for(int i=0;i<GameBomber.arrbomb.size();i++){
-                Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-                bomb.stoptime();
-            }
-            GameBomber.player=false;
-            bomber.updateimage("DIE",root);
-            GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
-
-        }
-
+        checkDie(bomber, root);
     }
 
-    public  void  checkAi(Bomber bomber, Pane root){
-        int startX = (int)getLayoutX() / 45 -1;
-        int startY = (int)getLayoutY() / 45 -1;
-        int endX = (int)bomber.getLayoutY() / 45 -1;
-        int endY = (int)bomber.getLayoutY()/ 45 -1;
-        System.out.printf("%d %d %d %d", startX, startY, endX, endY);
-        System.out.println();
-        listNode = Mapdata.findPath(startX, startY,endX,endY);
-        if(listNode.size() != 0){
+    public void checkAi(Bomber bomber, Pane root) {
+        //Mapdata.printMapNode();
+        //System.out.printf("%d %d", (int)getLayoutX(), (int)LayoutY);
+        //System.out.println();
+        int startX, startY;
+        if (checkX) {
+            checkX = false;
+            startX = ((int) getLayoutX()) / 45;
+        } else {
+            startX = ((int) getLayoutX() + 44) / 45;
+        }
+        if (checkY) {
+            checkY = false;
+            startY = ((int) getLayoutY()) / 45;
+        } else {
+            startY = ((int) getLayoutY() + 44) / 45;
+        }
+        int endX = (int) bomber.getLayoutX() / 45;
+        int endY = (int) bomber.getLayoutY() / 45;
+
+        //Mapdata.printMapNode(startX, startY, endX, endY);
+        //System.out.printf("%d %d %d %d", startX, startY, endX, endY);
+        //System.out.println();
+        listNode = Mapdata.findPath(startY, startX, endY, endX);
+        //movingBomber(3, 11);
+        if (listNode.size() != 0) {
             String temp = "=================================================>" + listNode.size();
             System.out.println(temp);
-            for(Node node: listNode){
+            for (Node node : listNode) {
                 int x = node.getX() * 45;
                 int y = node.getY() * 45;
-                System.out.printf("%d %d", x/45, y/45);
+                System.out.printf("%d %d", x / 45, y / 45);
                 System.out.println();
+            }
+            Node firstNode = listNode.get(0);
+
+            int posY = firstNode.getX();
+            int posX = firstNode.getY();
+            if (posX == startX) {
+                if (posY < startY) {
+                    if (LayoutX % 45 == 0){
+                        movingBomber(LayoutX, LayoutY - 1);
+                        lastDirection = "W";
+                    }else {
+                        movingOldDirection(lastDirection);
+                    }
+
+                }
+                if (posY > startY) {
+                    if (LayoutX % 45 == 0){
+                        movingBomber(LayoutX, LayoutY + 1);
+                        lastDirection = "S";
+                    } else {
+                        movingOldDirection(lastDirection);
+                    }
+                    checkY = true;
+
+                }
+            }
+            if (posY == startY) {
+                if (posX < startX) {
+                    if (LayoutY % 45 == 0) {
+                        movingBomber(LayoutX - 1, LayoutY);
+                        lastDirection = "A";
+                    } else {
+                        movingOldDirection(lastDirection);
+                    }
+                }
+                if (posX > startX) {
+                    if (LayoutY % 45 == 0){
+                        movingBomber(LayoutX + 1, LayoutY);
+                        lastDirection = "D";
+                    } else {
+                        movingOldDirection(lastDirection);
+                    }
+                    checkX = true;
+
+                }
+            }
+            listNode.remove(firstNode);
+
+        }
+    }
+
+    public void movingOldDirection(String lastDirection) {
+        switch (lastDirection){
+            case "A":{
+                movingBomber(LayoutX - 1, LayoutY);
+                break;
+            }
+            case "D": {
+                movingBomber(LayoutX + 1, LayoutY);
+                break;
+            }
+
+            case "W": {
+                movingBomber(LayoutX, LayoutY - 1);
+                break;
+            }
+
+            case "S": {
+                movingBomber(LayoutX, LayoutY + 1);
+                break;
             }
         }
     }
 
-
-
-    public void check(Bomber bomber, Pane root){
-        switch (STEP_SIZE){
+    public void check(Bomber bomber, Pane root) {
+        switch (STEP_SIZE) {
             case 'D':
-                if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX+1,LayoutY);
-                    STEP_SIZE='D';
+                if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX + 1, LayoutY);
+                    STEP_SIZE = 'D';
+                } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY + 1);
+                    STEP_SIZE = 'S';
+                } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY - 1);
+                    STEP_SIZE = 'W';
+                } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX - 1, LayoutY);
+                    STEP_SIZE = 'A';
                 }
-                else
-                if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX,LayoutY+1);
-                    STEP_SIZE='S';
-                }
-                else
-                    if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                        movingBomber(LayoutX, LayoutY - 1);
-                        STEP_SIZE = 'W';
-                             }
-                    else
-                            if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                                movingBomber(LayoutX-1,LayoutY);
-                                STEP_SIZE='A';}
                 break;
             case 'A':
-                if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX-1,LayoutY);
-                    STEP_SIZE='A';}
-                else
-                if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX,LayoutY+1);
-                    STEP_SIZE='S';
+                if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX - 1, LayoutY);
+                    STEP_SIZE = 'A';
+                } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY + 1);
+                    STEP_SIZE = 'S';
+                } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY - 1);
+                    STEP_SIZE = 'W';
+                } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX + 1, LayoutY);
+                    STEP_SIZE = 'D';
                 }
-                else
-                    if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                        movingBomber(LayoutX, LayoutY - 1);
-                        STEP_SIZE = 'W';
-                }
-                    else
-                            if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                                movingBomber(LayoutX+1,LayoutY);
-                                STEP_SIZE='D';}
                 break;
             case 'S':
-                if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX,LayoutY+1);
-                    STEP_SIZE='S';
-                }
-                else
-                if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX+1,LayoutY);
-                    STEP_SIZE='D';}
-                    else
-                if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX-1,LayoutY);
-                    STEP_SIZE='A';}
-                else
-                        if(check_Up((int)LayoutX,(int)LayoutY,1)) {
-                                movingBomber(LayoutX, LayoutY - 1);
-                                STEP_SIZE = 'W';
-                }
-                break;
-            case 'W':
-                if(check_Up((int)LayoutX,(int)LayoutY,1)) {
+                if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY + 1);
+                    STEP_SIZE = 'S';
+                } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX + 1, LayoutY);
+                    STEP_SIZE = 'D';
+                } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX - 1, LayoutY);
+                    STEP_SIZE = 'A';
+                } else if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
                     movingBomber(LayoutX, LayoutY - 1);
                     STEP_SIZE = 'W';
                 }
-                else
-                if(check_Right((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX+1,LayoutY);
-                    STEP_SIZE='D';}
-                else
-                if(check_Left((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX-1,LayoutY);
-                    STEP_SIZE='A';}
-                else
-                if(check_Down((int)LayoutX,(int)LayoutY,1)){
-                    movingBomber(LayoutX,LayoutY+1);
-                    STEP_SIZE='S';
+                break;
+            case 'W':
+                if (check_Up((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY - 1);
+                    STEP_SIZE = 'W';
+                } else if (check_Right((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX + 1, LayoutY);
+                    STEP_SIZE = 'D';
+                } else if (check_Left((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX - 1, LayoutY);
+                    STEP_SIZE = 'A';
+                } else if (check_Down((int) LayoutX, (int) LayoutY, 1)) {
+                    movingBomber(LayoutX, LayoutY + 1);
+                    STEP_SIZE = 'S';
                 }
                 break;
         }
-        if (Math.abs(bomber.LayoutX -this.LayoutX) < picture_width && Math.abs(this.LayoutY - bomber.LayoutY) < picture_height) {
-            for(int i=0;i<GameBomber.arrbomb.size();i++){
-                Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-                bomb.stoptime();
-            }
-            GameBomber.player=false;
-            bomber.updateimage("DIE",root);
-            GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
-        }
-
-            }
-
-
+        checkDie(bomber, root);
 
     }
+
+    public void checkDie(Bomber bomber, Pane root){
+        if (Math.abs(bomber.LayoutX - this.LayoutX) < picture_width && Math.abs(this.LayoutY - bomber.LayoutY) < picture_height) {
+            for (int i = 0; i < GameBomber.arrbomb.size(); i++) {
+                Bomb bomb = (Bomb) GameBomber.arrbomb.get(i);
+                bomb.stoptime();
+            }
+            GameBomber.player = false;
+            bomber.updateimage("DIE", root);
+            GameBomber.timeShowDie = System.nanoTime() / 1000000000.0;
+        }
+    }
+
+}
 

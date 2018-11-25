@@ -7,23 +7,59 @@ public class Mapdata {
     /**
      * The width of the map, in columns.
      */
-    private static int width = 50;
+    private static int widthMap = 50;
 
     /**
      * The height of the map, in rows.
      */
-    private static int height = 50;
+    private static int heightMap = 50;
 
     /**
      * Array full of nodes to be used for the pathfinding.
      */
-    private static Node[][] nodes = new Node[width][height];
+    private static int widthNode = 50;
+    private static int heightNode = 50;
 
-    private static char[][] Map = new char[width][height];
+    private static Node[][] nodes = new Node[widthNode][heightNode];
+
+    private static char[][] Map = new char[widthMap][heightMap];
+
+    public static  void  printMapNode(){
+        for(int i = 0; i < 13; i++){
+            for(int j = 0; j < 15; j++){
+                if(nodes[i][j].isWalkable()){
+                    System.out.printf(" ");
+                } else {
+                    System.out.printf("#");
+                }
+            }
+            System.out.println();
+        }
+    }
+    public static  void  printMapNode(int startX, int startY, int goalX, int goalY){
+        System.out.printf("%d %d", startX, startY);
+        System.out.println();
+        for(int i = 0; i < 13; i++){
+            for(int j = 0; j < 15; j++){
+                if(nodes[i][j].isWalkable()){
+                    if(j == startX && i == startY) System.out.printf("=");
+                    else{
+                        if(j == goalX && i == goalY) System.out.printf("?");
+                        else{
+                            System.out.printf(" ");
+                        }
+                    }
+                } else {
+                    System.out.printf("#");
+                }
+            }
+            System.out.println();
+        }
+    }
 
     public static Node getNode(int x, int y)
     {
-        if (x >= 0 && x < width && y >= 0 && y < height)
+        if (x >= 0 && x < widthNode && y >= 0 && y < heightNode)
         {
             return nodes[x][y];
         }
@@ -41,6 +77,10 @@ public class Mapdata {
         nodes[x][y] = new Node(x, y, value == ' ');
         //System.out.printf("%d %d", x, y);
         //System.out.println();
+    }
+
+    public  static  void  setMapNodesAtPos(int x,  int y, char value){
+        nodes[x][y] = new Node(x, y, value == ' ');
     }
 
     /**
@@ -199,7 +239,7 @@ public class Mapdata {
         }
 
         // Check right node
-        if (x < width)
+        if (x < widthNode)
         {
             adjacent = getNode(x + 1, y);
             if (adjacent != null && adjacent.isWalkable() && !closedList.contains(adjacent))
@@ -219,7 +259,7 @@ public class Mapdata {
         }
 
         // Check bottom node
-        if (y < height)
+        if (y < heightNode)
         {
             adjacent = getNode(x, y + 1);
             if (adjacent != null && adjacent.isWalkable() && !closedList.contains(adjacent))

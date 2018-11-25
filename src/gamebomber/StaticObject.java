@@ -8,11 +8,12 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 public class StaticObject {
-    public static ArrayList enemymap= new ArrayList<Enemy>();
+    public static ArrayList enemymap = new ArrayList<Enemy>();
     final double picture_width = 45;
     final double picture_height = 45;
     protected double layoutX;
     protected double layoutY;
+
     public StaticObject() {
     }
 
@@ -36,16 +37,17 @@ public class StaticObject {
     public void setLayoutY(double layoutY) {
         this.layoutY = layoutY;
     }
-    public void loadMap (String path, Pane group){
-        int column,row=-1;
+
+    public void loadMap(String path, Pane group) {
+        int column, row = -1;
         InputStream inpputStream = this.getClass().getResourceAsStream(path);
         InputStreamReader inputStreamReader = new InputStreamReader(inpputStream);
-        try(BufferedReader br = new BufferedReader(inputStreamReader)){
+        try (BufferedReader br = new BufferedReader(inputStreamReader)) {
             String lineData;
-            while ((lineData=br.readLine())!=null){
+            while ((lineData = br.readLine()) != null) {
                 row++;
-                for (int i=0;i<lineData.length();i++){
-                    column=i;
+                for (int i = 0; i < lineData.length(); i++) {
+                    column = i;
                     Mapdata.setMapAtPos(row, column, lineData.charAt(i));
                     switch (lineData.charAt(i)) {
                         case '#':
@@ -103,13 +105,13 @@ public class StaticObject {
                             Grass grass2 = new Grass((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(grass2.imageViewGrass);
                             break;
-                            default: break;
+                        default:
+                            break;
                     }
                 }
             }
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             System.err.println(e.getMessage());
         }
     }

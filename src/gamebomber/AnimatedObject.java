@@ -33,112 +33,112 @@ public class AnimatedObject {
         LayoutY = layoutY;
     }
 
-    public boolean check_Up (int layoutX, int layoutY,int SPEED){
+    public boolean check_Up(int layoutX, int layoutY, int SPEED) {
 
-        int locationRow1 = (layoutY-SPEED)/picture_height;
-        int locationColumn1 = (layoutX)/picture_width;
+        int locationRow1 = (layoutY - SPEED) / picture_height;
+        int locationColumn1 = (layoutX) / picture_width;
         char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
-        int locationRow2 = (layoutY-SPEED)/picture_height;
-        int locationColumn2 = (layoutX+picture_width-1)/picture_width;
+        int locationRow2 = (layoutY - SPEED) / picture_height;
+        int locationColumn2 = (layoutX + picture_width - 1) / picture_width;
         char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
-        if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
+        if (((tem1 == '#' || tem1 == '*' || tem1 == 'b') || (tem2 == '#' || tem2 == '*' || tem2 == 'b')))
             return false;
 
-        for(int i=0;i<GameBomber.arrbomb.size();i++) {
-            Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-            if (Math.abs(layoutX - bomb.layoutX) <= 44 && Math.abs(layoutY - bomb.layoutY) <= 44){
+        for (int i = 0; i < GameBomber.arrbomb.size(); i++) {
+            Bomb bomb = (Bomb) GameBomber.arrbomb.get(i);
+            if (Math.abs(layoutX - bomb.layoutX) <= 44 && Math.abs(layoutY - bomb.layoutY) <= 44) {
                 continue;
             }
-            if (layoutX >= bomb.layoutX + picture_width || layoutX <= bomb.layoutX - picture_width){
+            if (layoutX >= bomb.layoutX + picture_width || layoutX <= bomb.layoutX - picture_width) {
                 continue;
             }
-            if(layoutY>bomb.layoutY){
-                if(layoutY >=bomb.layoutY + picture_height+SPEED){
+            if (layoutY > bomb.layoutY) {
+                if (layoutY >= bomb.layoutY + picture_height + SPEED) {
                     continue;
                 }
-            }
-            else{
+            } else {
                 continue;
             }
             return false;
         }
         return true;
     }
-    public boolean check_Down (int layoutX, int layoutY,int SPEED){
-        int locationRow1 = (layoutY+SPEED+picture_height-1)/picture_height;
-        int locationColumn1 = (layoutX)/picture_width;
+
+    public boolean check_Down(int layoutX, int layoutY, int SPEED) {
+        int locationRow1 = (layoutY + SPEED + picture_height - 1) / picture_height;
+        int locationColumn1 = (layoutX) / picture_width;
         char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
-        int locationRow2 = (layoutY+SPEED+picture_height-1)/picture_height;
-        int locationColumn2 = (layoutX+picture_width-1)/picture_width;
+        int locationRow2 = (layoutY + SPEED + picture_height - 1) / picture_height;
+        int locationColumn2 = (layoutX + picture_width - 1) / picture_width;
         char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
-        if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
+        if (((tem1 == '#' || tem1 == '*' || tem1 == 'b') || (tem2 == '#' || tem2 == '*' || tem2 == 'b')))
             return false;
-        for(int i=0;i<GameBomber.arrbomb.size();i++) {
-            Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-            if (Math.abs(layoutX - bomb.layoutX) <picture_width && Math.abs(layoutY - bomb.layoutY) <picture_height){
+        for (int i = 0; i < GameBomber.arrbomb.size(); i++) {
+            Bomb bomb = (Bomb) GameBomber.arrbomb.get(i);
+            if (Math.abs(layoutX - bomb.layoutX) < picture_width && Math.abs(layoutY - bomb.layoutY) < picture_height) {
                 continue;
             }
-            if (layoutX >= bomb.layoutX + picture_width || layoutX <= bomb.layoutX - picture_width){
+            if (layoutX >= bomb.layoutX + picture_width || layoutX <= bomb.layoutX - picture_width) {
                 continue;
             }
-            if(layoutY<bomb.layoutY){
-                if(layoutY <bomb.layoutY - picture_height-SPEED+1 ){
+            if (layoutY < bomb.layoutY) {
+                if (layoutY < bomb.layoutY - picture_height - SPEED + 1) {
                     continue;
                 }
-            }
-            else{
+            } else {
                 continue;
             }
             return false;
         }
         return true;
     }
-    public boolean check_Left (int layoutX,int layoutY,int SPEED){
-        int locationRow1 = (layoutY)/picture_height;
-        int locationColumn1 = (layoutX-SPEED)/picture_width;
+
+    public boolean check_Left(int layoutX, int layoutY, int SPEED) {
+        int locationRow1 = (layoutY) / picture_height;
+        int locationColumn1 = (layoutX - SPEED) / picture_width;
         char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
-        int locationRow2 = (layoutY+picture_height-1)/picture_height;
-        int locationColumn2 = (layoutX-SPEED)/picture_width;
+        int locationRow2 = (layoutY + picture_height - 1) / picture_height;
+        int locationColumn2 = (layoutX - SPEED) / picture_width;
         char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
-        if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
+        if (((tem1 == '#' || tem1 == '*' || tem1 == 'b') || (tem2 == '#' || tem2 == '*' || tem2 == 'b')))
             return false;
-        for(int i=0;i<GameBomber.arrbomb.size();i++) {
-            Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-            if (Math.abs(layoutX- bomb.layoutX) <picture_width && Math.abs(layoutY - bomb.layoutY) <picture_height)
+        for (int i = 0; i < GameBomber.arrbomb.size(); i++) {
+            Bomb bomb = (Bomb) GameBomber.arrbomb.get(i);
+            if (Math.abs(layoutX - bomb.layoutX) < picture_width && Math.abs(layoutY - bomb.layoutY) < picture_height)
                 continue;
-            if (layoutY >= bomb.layoutY + picture_height || layoutY <= bomb.layoutY-picture_height)
-               continue;
-            if(layoutX>bomb.layoutX){
-                if(layoutX >=bomb.layoutX+picture_width+SPEED)
+            if (layoutY >= bomb.layoutY + picture_height || layoutY <= bomb.layoutY - picture_height)
+                continue;
+            if (layoutX > bomb.layoutX) {
+                if (layoutX >= bomb.layoutX + picture_width + SPEED)
                     continue;
-            }
-            else
+            } else
                 continue;
             return false;
         }
         return true;
     }
-    public boolean check_Right (int layoutX,int layoutY,int SPEED){
-        int locationRow1 = (layoutY)/picture_height;
-        int locationColumn1 = (layoutX+SPEED+picture_width-1)/picture_width;
+
+    public boolean check_Right(int layoutX, int layoutY, int SPEED) {
+        int locationRow1 = (layoutY) / picture_height;
+        int locationColumn1 = (layoutX + SPEED + picture_width - 1) / picture_width;
         char tem1 = Mapdata.getMapAtPos(locationRow1, locationColumn1);
-        int locationRow2 = (layoutY+picture_height-1)/picture_height;
-        int locationColumn2 = (layoutX+SPEED+picture_width-1)/picture_width;
+        int locationRow2 = (layoutY + picture_height - 1) / picture_height;
+        int locationColumn2 = (layoutX + SPEED + picture_width - 1) / picture_width;
         char tem2 = Mapdata.getMapAtPos(locationRow2, locationColumn2);
-        if (((tem1=='#'||tem1=='*'||tem1=='b')||(tem2=='#'||tem2=='*'||tem2=='b')))
+        if (((tem1 == '#' || tem1 == '*' || tem1 == 'b') || (tem2 == '#' || tem2 == '*' || tem2 == 'b')))
             return false;
-        for(int i=0;i<GameBomber.arrbomb.size();i++) {
-            Bomb bomb=(Bomb)GameBomber.arrbomb.get(i);
-            if (Math.abs(layoutX - bomb.layoutX)<picture_width && Math.abs(layoutY - bomb.layoutY) <picture_height)
+        for (int i = 0; i < GameBomber.arrbomb.size(); i++) {
+            Bomb bomb = (Bomb) GameBomber.arrbomb.get(i);
+            if (Math.abs(layoutX - bomb.layoutX) < picture_width && Math.abs(layoutY - bomb.layoutY) < picture_height)
                 continue;
-            if ( layoutY >= bomb.layoutY + picture_height || layoutY <= bomb.layoutY-picture_height)
+            if (layoutY >= bomb.layoutY + picture_height || layoutY <= bomb.layoutY - picture_height)
                 continue;
-            if(layoutX<bomb.layoutX)
-            {   if(layoutX <bomb.layoutX-picture_width -SPEED+1)
-                    continue;}
-             else
-                 continue;
-             return false;
+            if (layoutX < bomb.layoutX) {
+                if (layoutX < bomb.layoutX - picture_width - SPEED + 1)
+                    continue;
+            } else
+                continue;
+            return false;
         }
         return true;
     }
