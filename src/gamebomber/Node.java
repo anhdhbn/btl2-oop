@@ -1,4 +1,4 @@
-package game_bomber;
+package gamebomber;
 
 public class Node
 {

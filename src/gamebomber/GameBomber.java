@@ -1,4 +1,4 @@
-package game_bomber;
+package gamebomber;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;

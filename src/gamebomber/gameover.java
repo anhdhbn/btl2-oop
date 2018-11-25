@@ -1,4 +1,4 @@
-package game_bomber;
+package gamebomber;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;

@@ -1,6 +1,5 @@
-package game_bomber;
+package gamebomber;
 
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.BufferedReader;

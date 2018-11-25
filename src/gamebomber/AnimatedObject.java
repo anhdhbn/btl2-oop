@@ -1,6 +1,4 @@
-package game_bomber;
-
-import javafx.scene.image.ImageView;
+package gamebomber;
 
 import java.util.Random;
 

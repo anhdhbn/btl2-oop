@@ -1,10 +1,8 @@
-package game_bomber;
+package gamebomber;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
-import java.util.ArrayList;
 
 public class Bomber extends AnimatedObject {
     ImageView imageViewBomber = new ImageView(new Image(getClass().getResourceAsStream("/Image/bomberDown.png")));
