@@ -3,13 +3,19 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 
 public class Enemy extends AnimatedObject {
+    private boolean walking;
+    private boolean fixing;
     private int level;
-    Random random=new Random();
 
+
+    Random random=new Random();
+    List<Node> listNode = new ArrayList<>();
     char STEP_SIZE ='D';
     ImageView imageViewEnemy = new ImageView(new Image(getClass().getResourceAsStream("/Image/enemy.png")));
     public int getLevel() {
@@ -23,6 +29,8 @@ public class Enemy extends AnimatedObject {
         super(LayoutX,LayoutY);
         imageViewEnemy.setLayoutX(LayoutX);
         imageViewEnemy.setLayoutY(LayoutY);
+        walking = false;
+        fixing = false;
     }
     public void movingBomber (double LayoutX, double LayoutY){
         this.LayoutX=LayoutX;
@@ -31,7 +39,7 @@ public class Enemy extends AnimatedObject {
         imageViewEnemy.setLayoutY(LayoutY);
 
     }
-    public void checkRamdom(Bomber bomber,Pane root){
+    public void checkRandom(Bomber bomber,Pane root){
         int temp=random.nextInt(10);
         temp=temp%2;
         switch (STEP_SIZE){
@@ -287,6 +295,28 @@ public class Enemy extends AnimatedObject {
 
     }
 
+    public  void  checkAi(Bomber bomber, Pane root){
+        int startX = (int)getLayoutX() / 45 -1;
+        int startY = (int)getLayoutY() / 45 -1;
+        int endX = (int)bomber.getLayoutY() / 45 -1;
+        int endY = (int)bomber.getLayoutY()/ 45 -1;
+        System.out.printf("%d %d %d %d", startX, startY, endX, endY);
+        System.out.println();
+        listNode = Mapdata.findPath(startX, startY,endX,endY);
+        if(listNode.size() != 0){
+            String temp = "=================================================>" + listNode.size();
+            System.out.println(temp);
+            for(Node node: listNode){
+                int x = node.getX() * 45;
+                int y = node.getY() * 45;
+                System.out.printf("%d %d", x/45, y/45);
+                System.out.println();
+            }
+        }
+    }
+
+
+
     public void check(Bomber bomber, Pane root){
         switch (STEP_SIZE){
             case 'D':
@@ -378,6 +408,8 @@ public class Enemy extends AnimatedObject {
         }
 
             }
+
+
 
     }
 

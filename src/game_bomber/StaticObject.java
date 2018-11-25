@@ -108,6 +108,7 @@ public class StaticObject {
                     }
                 }
             }
+
         }
         catch(Exception e){
             System.err.println(e.getMessage());

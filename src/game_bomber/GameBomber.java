@@ -191,6 +191,7 @@ public class GameBomber extends Application {
             }
         });
         //final long startNanoTime = System.nanoTime();
+
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
                 if(timeShowDie!=0){
@@ -200,6 +201,8 @@ public class GameBomber extends Application {
                         primaryStage.close();
                     }
                 }
+
+
                 Enemy enemy;
                 for (int i=0;i<StaticObject.enemymap.size();i++){
                     enemy=(Enemy) StaticObject.enemymap.get(i);
@@ -207,18 +210,23 @@ public class GameBomber extends Application {
                         enemy.check(bomber,root);
                     else
                         if(enemy.getLevel()==2)
-                            enemy.checkRamdom(bomber,root);
+                            enemy.checkRandom(bomber,root);
                         else
                             if(enemy.getLevel()==3){
+                                enemy.checkAi(bomber,root);
+                                //enemy.checkAi(bomber,root);
                                 //goi cai ham check tim duoi nguoi
                                 //ham đấy check xong thay toa do moi thi copy cai đoạn check bị bom nổ với va chạm người ở cuối hàm check bên trên
-                                System.out.println();
+                                //System.out.println();
                             }
                 }
-                    System.out.println(Bomb.check);
+                    //System.out.println(Bomb.check);
                 Bomb.Handling(root,bomber);
             }}
         .start();
+
+//        Enemy e = (Enemy)(StaticObject.enemymap.get(0));
+//        e.checkAi(bomber,root);
 
         root.getChildren().add(bomber.imageViewBomber);
         //root.getChildren().add(mediaView);

@@ -39,6 +39,8 @@ public class Mapdata {
     public static void setMapAtPos(int x,  int y, char value) {
         Map[x][y] = value;
         nodes[x][y] = new Node(x, y, value == ' ');
+        //System.out.printf("%d %d", x, y);
+        //System.out.println();
     }
 
     /**
