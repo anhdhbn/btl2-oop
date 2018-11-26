@@ -17,7 +17,7 @@ public class Bomb extends StaticObject {
     public boolean Left = false;
     public boolean Up = false;
     public boolean Down = false;
-    static Media mediabom = new Media(new File("C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\tiengbomsapno.mp3").toURI().toString());
+    static Media mediabom = new Media(new File("C:\\Users\\Anh DH\\Desktop\\New folder (5)\\sound\\tiengbomsapno.mp3").toURI().toString());
     public MediaPlayer mediaPlayer1 = new MediaPlayer(mediabom);
 
     public void starttime() {

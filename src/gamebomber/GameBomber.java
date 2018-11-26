@@ -20,6 +20,8 @@ import javafx.util.Duration;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 
 public class GameBomber extends Application {
     static double timeShowDie = 0;
@@ -36,24 +38,24 @@ public class GameBomber extends Application {
     static Item door = new Item();
     static int SPEED = 3;
     static Stage LOSS = new Stage();
-    static Media media = new Media(new File("C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\Tieng-Bom-V-A.mp3").toURI().toString());
+    static Media media = new Media(new File("C:\\Users\\Anh DH\\Desktop\\New folder (5)\\sound\\Tieng-Bom-V-A.mp3").toURI().toString());
 
     public static void main(String[] args) {
         launch(args);
     }
-
+    private final Set<Character> pressed = new HashSet<Character>();
     @Override
     public void start(Stage primary) throws Exception {
         final int width = 675;
         final int height = 585;
         final int picture_width = 45;
         final int picture_height = 45;
-        final String path = "C:\\Users\\Admin\\IdeaProjects\\Game_Bomber\\sound\\Vo-Tinh-Xesi-Hoaprox.mp3";
+        final String path = "C:\\Users\\Anh DH\\Desktop\\New folder (5)\\sound\\soundMenu.mp3";
         primaryStage.setTitle("Bomberman");
         Pane root = new Pane();
         Media media = new Media(new File(path).toURI().toString());
         MediaPlayer mediaPlayer = new MediaPlayer(media);
-        mediaPlayer.setStartTime(Duration.millis(5000));
+//        mediaPlayer.setStartTime(Duration.millis(5000));
         //mediaPlayer.play();
         mediaPlayer.setVolume(0.5);
         mediaPlayer.setAutoPlay(true);
@@ -69,6 +71,7 @@ public class GameBomber extends Application {
 
         //dieu khien nhan vat
         primaryScene.setOnKeyPressed(action -> {
+//            System.out.println(action.getCode().getName());
             if (player) {
                 if (action.getCode() == KeyCode.UP) {
                     bomber.updateimage("UP", root);
@@ -184,6 +187,8 @@ public class GameBomber extends Application {
                 }
             }
         });
+
+
         //final long startNanoTime = System.nanoTime();
 
         new AnimationTimer() {
