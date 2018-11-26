@@ -39,17 +39,18 @@ public class GameBomber extends Application {
     static int SPEED = 3;
     static Stage LOSS = new Stage();
     static Media media = new Media(new File("C:\\Users\\Anh DH\\Desktop\\New folder (5)\\sound\\Tieng-Bom-V-A.mp3").toURI().toString());
-
+    static final int width = 675;
+    static final int height = 585;
+    static final int picture_width = 45;
+    static final int picture_height = 45;
+    static KeyCode curentDirection = KeyCode.N;
     public static void main(String[] args) {
         launch(args);
     }
-    private final Set<Character> pressed = new HashSet<Character>();
+    private final Set<KeyCode> pressed = new HashSet<>();
     @Override
     public void start(Stage primary) throws Exception {
-        final int width = 675;
-        final int height = 585;
-        final int picture_width = 45;
-        final int picture_height = 45;
+
         final String path = "C:\\Users\\Anh DH\\Desktop\\New folder (5)\\sound\\soundMenu.mp3";
         primaryStage.setTitle("Bomberman");
         Pane root = new Pane();
@@ -71,90 +72,79 @@ public class GameBomber extends Application {
 
         //dieu khien nhan vat
         primaryScene.setOnKeyPressed(action -> {
-//            System.out.println(action.getCode().getName());
-            if (player) {
-                if (action.getCode() == KeyCode.UP) {
-                    bomber.updateimage("UP", root);
-                    if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutY) % SPEED)) {
-                        bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() - (SPEED + ((int) bomber.LayoutY) % SPEED));
-                        bomber.CheckItem(root);
-                    } else if (((int) bomber.LayoutX) % picture_width <= 18 && ((int) bomber.LayoutX) % picture_width > 0) {
-                        if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutX) % picture_width)) {
-                            if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutY) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), bomber.imageViewBomber.getLayoutY());
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    } else if (((int) bomber.LayoutX) % picture_width > 26) {
-                        if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_width - ((int) bomber.LayoutX) % picture_width)) {
-                            if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutY) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, bomber.imageViewBomber.getLayoutY());
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    }
-                } else if (action.getCode() == KeyCode.LEFT) {
-                    bomber.updateimage("LEFT", root);
-                    if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutX) % SPEED)) {
-                        bomber.movingBomber(bomber.imageViewBomber.getLayoutX() - (SPEED + ((int) bomber.LayoutX) % SPEED), bomber.imageViewBomber.getLayoutY());
-                        bomber.CheckItem(root);
-                    } else if (((int) bomber.LayoutY) % picture_height <= 18 && ((int) bomber.LayoutY) % picture_height > 0) {
-                        if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutY) % picture_height)) {
-                            if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height), SPEED + ((int) bomber.LayoutX) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height));
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    } else if (((int) bomber.LayoutY) % picture_height > 26) {
-                        if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_height - ((int) bomber.LayoutY) % picture_height)) {
-                            if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height, SPEED + ((int) bomber.LayoutX) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height);
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    }
-                } else if (action.getCode() == KeyCode.DOWN) {
-                    bomber.updateimage("DOWN", root);
-                    if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutY) % SPEED)) {
-                        bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() + SPEED - ((int) bomber.LayoutY) % SPEED);
-                        bomber.CheckItem(root);
-                    } else if (((int) bomber.LayoutX) % picture_width > 26) {
-                        if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_width - ((int) bomber.LayoutX) % picture_width)) {
-                            if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutY) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, bomber.imageViewBomber.getLayoutY());
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    } else if (((int) bomber.LayoutX) % picture_width <= 18 && ((int) bomber.LayoutX) % picture_width > 0) {
-                        if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutX) % picture_width)) {
-                            if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutY) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), bomber.imageViewBomber.getLayoutY());
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    }
-                } else if (action.getCode() == KeyCode.RIGHT) {
-                    bomber.updateimage("RIGHT", root);
-                    if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutX) % SPEED)) {
-                        bomber.movingBomber(bomber.imageViewBomber.getLayoutX() + SPEED - ((int) bomber.LayoutX) % SPEED, bomber.imageViewBomber.getLayoutY());
-                        bomber.CheckItem(root);
-                    } else if (((int) bomber.LayoutY) % picture_height > 26) {
-                        if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_height - ((int) bomber.LayoutY) % picture_height)) {
-                            if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height, SPEED - ((int) bomber.LayoutX) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height);
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    } else if (((int) bomber.LayoutY) % picture_height <= 18 && ((int) bomber.LayoutY) % picture_height > 0) {
-                        if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutY) % picture_height)) {
-                            if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height), SPEED - ((int) bomber.LayoutX) % SPEED)) {
-                                bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height));
-                                bomber.CheckItem(root);
-                            }
-                        }
-                    }
+            KeyCode keyCode = action.getCode();
 
-                } else if (action.getCode() == KeyCode.SPACE) {
+            if(!player){
+                curentDirection = KeyCode.N;
+            } else {
+                switch (keyCode){
+                    case UP:{
+                        curentDirection = KeyCode.UP;
+                        if(!pressed.contains(KeyCode.UP)){
+                            pressed.add(KeyCode.UP);
+                        }
+                        break;
+                    }
+                    case DOWN:{
+                        curentDirection = KeyCode.DOWN;
+                        if(!pressed.contains(KeyCode.DOWN)){
+                            pressed.add(KeyCode.DOWN);
+                        }
+                        break;
+                    }
+                    case LEFT:{
+                        curentDirection = KeyCode.LEFT;
+                        if(!pressed.contains(KeyCode.LEFT)){
+                            pressed.add(KeyCode.LEFT);
+                        }
+                        break;
+                    }
+                    case RIGHT:{
+                        curentDirection = KeyCode.RIGHT;
+                        if(!pressed.contains(KeyCode.RIGHT)){
+                            pressed.add(KeyCode.RIGHT);
+                        }
+                        break;
+                    }
+                    case A:{
+                        curentDirection = KeyCode.LEFT;
+                        if(!pressed.contains(KeyCode.LEFT)){
+                            pressed.add(KeyCode.LEFT);
+                        }
+                        break;
+                    }
+                    case D:{
+                        curentDirection = KeyCode.RIGHT;
+                        if(!pressed.contains(KeyCode.RIGHT)){
+                            pressed.add(KeyCode.RIGHT);
+                        }
+                        break;
+                    }
+                    case W:{
+                        curentDirection = KeyCode.UP;
+                        if(!pressed.contains(KeyCode.UP)){
+                            pressed.add(KeyCode.UP);
+                        }
+                        break;
+                    }
+                    case S:{
+                        curentDirection = KeyCode.DOWN;
+                        if(!pressed.contains(KeyCode.DOWN)){
+                            pressed.add(KeyCode.DOWN);
+                        }
+                        break;
+                    }
+                    default:{
+                        curentDirection = KeyCode.N;
+                        break;
+                    }
+                }
+            }
+
+//            System.out.println(action.getCode().getName());
+            //curentDirection = action.getCode();
+            if (player) {
+                 if (action.getCode() == KeyCode.SPACE) {
                     if (!NotPutBomb) {
                         int LayoutX = (int) bomber.LayoutX;
                         int LayoutY = (int) bomber.LayoutY;
@@ -188,11 +178,24 @@ public class GameBomber extends Application {
             }
         });
 
+        primaryScene.setOnKeyReleased(action->{
+            KeyCode keyCode = action.getCode();
+
+            if(pressed.contains(keyCode)){
+                pressed.remove(keyCode);
+            }
+            if(pressed.size() == 0) curentDirection = KeyCode.N;
+//            System.out.println(keyCode);
+//            System.out.println("CurrentKey: " + curentDirection);
+//            System.out.println(pressed.size());
+        });
 
         //final long startNanoTime = System.nanoTime();
 
         new AnimationTimer() {
             public void handle(long currentNanoTime) {
+                ///////asd/
+                listenKeyToMoving(root, bomber);
                 if (timeShowDie != 0) {
                     if (System.nanoTime() / 1000000000.0 - timeShowDie > 0.2) {
                         timeShowDie = 0;
@@ -257,6 +260,96 @@ public class GameBomber extends Application {
         LOSS.setTitle("GAMEOVER");
         LOSS.setX(primaryStage.getX() + 200);
         LOSS.setY(primaryStage.getY() + 200);
+
+    }
+
+    public void listenKeyToMoving(Pane root, Bomber bomber){
+        if(!player){
+            curentDirection = KeyCode.N;
+        }else {
+            if (curentDirection == KeyCode.UP) {
+                bomber.updateimage("UP", root);
+                if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutY) % SPEED)) {
+                    bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() - (SPEED + ((int) bomber.LayoutY) % SPEED));
+                    bomber.CheckItem(root);
+                } else if (((int) bomber.LayoutX) % picture_width <= 18 && ((int) bomber.LayoutX) % picture_width > 0) {
+                    if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutX) % picture_width)) {
+                        if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutY) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), bomber.imageViewBomber.getLayoutY());
+                            bomber.CheckItem(root);
+                        }
+                    }
+                } else if (((int) bomber.LayoutX) % picture_width > 26) {
+                    if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_width - ((int) bomber.LayoutX) % picture_width)) {
+                        if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutY) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, bomber.imageViewBomber.getLayoutY());
+                            bomber.CheckItem(root);
+                        }
+                    }
+                }
+            } else if (curentDirection == KeyCode.LEFT) {
+                bomber.updateimage("LEFT", root);
+                if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED + ((int) bomber.LayoutX) % SPEED)) {
+                    bomber.movingBomber(bomber.imageViewBomber.getLayoutX() - (SPEED + ((int) bomber.LayoutX) % SPEED), bomber.imageViewBomber.getLayoutY());
+                    bomber.CheckItem(root);
+                } else if (((int) bomber.LayoutY) % picture_height <= 18 && ((int) bomber.LayoutY) % picture_height > 0) {
+                    if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutY) % picture_height)) {
+                        if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height), SPEED + ((int) bomber.LayoutX) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height));
+                            bomber.CheckItem(root);
+                        }
+                    }
+                } else if (((int) bomber.LayoutY) % picture_height > 26) {
+                    if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_height - ((int) bomber.LayoutY) % picture_height)) {
+                        if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height, SPEED + ((int) bomber.LayoutX) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height);
+                            bomber.CheckItem(root);
+                        }
+                    }
+                }
+            } else if (curentDirection == KeyCode.DOWN) {
+                bomber.updateimage("DOWN", root);
+                if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutY) % SPEED)) {
+                    bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() + SPEED - ((int) bomber.LayoutY) % SPEED);
+                    bomber.CheckItem(root);
+                } else if (((int) bomber.LayoutX) % picture_width > 26) {
+                    if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_width - ((int) bomber.LayoutX) % picture_width)) {
+                        if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutY) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX() + picture_width - ((int) bomber.LayoutX) % picture_width, bomber.imageViewBomber.getLayoutY());
+                            bomber.CheckItem(root);
+                        }
+                    }
+                } else if (((int) bomber.LayoutX) % picture_width <= 18 && ((int) bomber.LayoutX) % picture_width > 0) {
+                    if (bomber.check_Left((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutX) % picture_width)) {
+                        if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutY) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX() - (((int) bomber.LayoutX) % picture_width), bomber.imageViewBomber.getLayoutY());
+                            bomber.CheckItem(root);
+                        }
+                    }
+                }
+            } else if (curentDirection == KeyCode.RIGHT) {
+                bomber.updateimage("RIGHT", root);
+                if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), SPEED - ((int) bomber.LayoutX) % SPEED)) {
+                    bomber.movingBomber(bomber.imageViewBomber.getLayoutX() + SPEED - ((int) bomber.LayoutX) % SPEED, bomber.imageViewBomber.getLayoutY());
+                    bomber.CheckItem(root);
+                } else if (((int) bomber.LayoutY) % picture_height > 26) {
+                    if (bomber.check_Down((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), picture_height - ((int) bomber.LayoutY) % picture_height)) {
+                        if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height, SPEED - ((int) bomber.LayoutX) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() + picture_height - ((int) bomber.LayoutY) % picture_height);
+                            bomber.CheckItem(root);
+                        }
+                    }
+                } else if (((int) bomber.LayoutY) % picture_height <= 18 && ((int) bomber.LayoutY) % picture_height > 0) {
+                    if (bomber.check_Up((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY(), ((int) bomber.LayoutY) % picture_height)) {
+                        if (bomber.check_Right((int) bomber.imageViewBomber.getLayoutX(), (int) bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height), SPEED - ((int) bomber.LayoutX) % SPEED)) {
+                            bomber.movingBomber(bomber.imageViewBomber.getLayoutX(), bomber.imageViewBomber.getLayoutY() - (((int) bomber.LayoutY) % picture_height));
+                            bomber.CheckItem(root);
+                        }
+                    }
+                }
+
+            }
+        }
 
     }
 }
