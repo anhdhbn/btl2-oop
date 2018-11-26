@@ -1,5 +1,7 @@
 package gamebomber;
 
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import java.io.BufferedReader;
@@ -62,6 +64,7 @@ public class StaticObject {
                             Mapdata.setMapAtPos(row, column, ' ');
                             Enemy enemy = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy.setLevel(1);
+                            enemy.setImageViewEnemy(new ImageView(new Image(getClass().getResourceAsStream("/Image/downlevel1.png"))));
                             enemymap.add(enemy);
                             Grass grassx = new Grass((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(grassx.imageViewGrass);
@@ -92,6 +95,7 @@ public class StaticObject {
                             Mapdata.setMapAtPos(row, column, ' ');
                             Enemy enemy1 = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy1.setLevel(2);
+                            enemy1.setImageViewEnemy(new ImageView(new Image(getClass().getResourceAsStream("/Image/downlevel2.png"))));
                             enemymap.add(enemy1);
                             Grass grass1 = new Grass((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(grass1.imageViewGrass);
@@ -101,6 +105,7 @@ public class StaticObject {
                             Mapdata.setMapAtPos(row, column, ' ');
                             Enemy enemy2 = new Enemy((double) column * picture_width, (double) row * picture_height);
                             enemy2.setLevel(3);
+                            enemy2.setImageViewEnemy(new ImageView(new Image(getClass().getResourceAsStream("/Image/downlevel3.png"))));
                             enemymap.add(enemy2);
                             Grass grass2 = new Grass((double) column * picture_width, (double) row * picture_height);
                             group.getChildren().add(grass2.imageViewGrass);
